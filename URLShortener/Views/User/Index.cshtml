@@ -1,0 +1,54 @@
+﻿@model URLShortener.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@Model.UserName's BookMark</h2>
+
+<div class="container">
+
+    <table class="table">
+        <tr>
+            <th>
+                Clicks
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Url
+            </th>
+            <th>
+                BookMark Link
+            </th>
+            <th>
+                Decription
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in ViewBag.UserBookMarks)
+            {
+            <tr>
+                <td>
+                    @item.Clicks;
+                </td>
+                <td>
+                    @Html.RouteLink((string)item.Title, new { HashLink = item.HashLink})
+                </td>
+                <td>
+                    @item.URL
+                </td>
+                <td>
+                    @item.HashLink
+                </td>
+                <td>
+                    @item.Description
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

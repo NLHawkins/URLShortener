@@ -1,0 +1,30 @@
+﻿@model URLShortener.Models.BookMark
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="container">
+    <h2>Details</h2>
+
+    <div>
+        <h4>BookMark</h4>
+    </div>
+
+    <div>
+        <p>
+            <h2 class="post-title">
+                @Model.Title
+            </h2>
+        </p>
+        <p>
+            <h3 class="post-subtitle">
+               @Model.Description;
+            </h3>
+        </p>
+        <p class="post-meta">BookMark visited @Model.Clicks times</p>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
