@@ -12,8 +12,9 @@ namespace URLShortener.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
+
         {
-            ViewBag.BookMarks = db.BookMark.ToList();
+            ViewBag.BookMarks = db.BookMark.ToList().OrderByDescending(o=>o.Created);
             return View();
 
         }

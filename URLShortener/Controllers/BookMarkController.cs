@@ -34,8 +34,7 @@ namespace URLShortener.Controllers
         }
         public ActionResult Index()
         {
-            var bookMark = db.BookMark.Include(b => b.Owner);
-            return View(bookMark.ToList());
+            return RedirectToAction("Index", "Home");
         }
 
         [Route("b/{hashlink}")]
@@ -43,6 +42,10 @@ namespace URLShortener.Controllers
         {
             
             BookMark bookMark = db.BookMark.Where(h => h.HashLink == hashlink).FirstOrDefault();
+            var creatorId = bookMark.OwnerId;
+            var creator = db.Users.Where(i => i.Id == creatorId).FirstOrDefault();
+
+            ViewBag.CreatorName = creator.UserName;
             if (bookMark == null)
             {
                 return HttpNotFound();
@@ -60,12 +63,18 @@ namespace URLShortener.Controllers
             return View(bookMark);
         }
 
-        // GET: BookMark/Create
+
+        
         public ActionResult Create()
         {
-            ViewBag.OwnerId = User.Identity.GetUserId();
+            var userId = User.Identity.GetUserId();
+            if (userId == null)
+            {
+                return RedirectToAction("Login");
+            }
             return View();
         }
+
 
         // POST: BookMark/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -89,7 +98,7 @@ namespace URLShortener.Controllers
             return View(bookMark);
         }
 
-        // GET: BookMark/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -122,7 +131,7 @@ namespace URLShortener.Controllers
             return View(bookMark);
         }
 
-        // GET: BookMark/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)

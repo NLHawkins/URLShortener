@@ -14,13 +14,8 @@
                             @item.Description;
                         </h3>
                     </p>
-                    <p class="post-meta">BookMark visited @item.Clicks times</p> 
+                    <p class="post-meta">BookMarked by visited @item.Clicks times</p> 
                 </div>
-                <p>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </p>
 
             }
 </div>

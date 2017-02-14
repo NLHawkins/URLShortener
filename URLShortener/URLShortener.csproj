@@ -216,6 +216,10 @@
     <Compile Include="Migrations\201702132238087_addedClickToBookMarkModel.Designer.cs">
       <DependentUpon>201702132238087_addedClickToBookMarkModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702140300357_addedcreatedtomodel.cs" />
+    <Compile Include="Migrations\201702140300357_addedcreatedtomodel.Designer.cs">
+      <DependentUpon>201702140300357_addedcreatedtomodel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BookMark.cs" />
@@ -290,6 +294,7 @@
     <Content Include="Views\BookMark\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -312,6 +317,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702132238087_addedClickToBookMarkModel.resx">
       <DependentUpon>201702132238087_addedClickToBookMarkModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702140300357_addedcreatedtomodel.resx">
+      <DependentUpon>201702140300357_addedcreatedtomodel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

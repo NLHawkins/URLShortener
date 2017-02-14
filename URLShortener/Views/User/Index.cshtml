@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>@Model.UserName's BookMark</h2>
+<h2>@Model.UserName's BookMarks</h2>
 
 <div class="container">
 
@@ -32,7 +32,7 @@
             {
             <tr>
                 <td>
-                    @item.Clicks;
+                    @item.Clicks
                 </td>
                 <td>
                     @Html.RouteLink((string)item.Title, new { HashLink = item.HashLink})
@@ -50,5 +50,7 @@
         }
 
     </table>
-
+    <p>
+        @Html.ActionLink("Home", "Index", "Home")
+    </p>
 </div>

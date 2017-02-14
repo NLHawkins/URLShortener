@@ -12,21 +12,27 @@ namespace URLShortener.Controllers
     public class UserController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        public ActionResult Index()
-        {
-            var userId = User.Identity.GetUserId();
-            var userInstance = db.Users.Where(u => u.Id == userId).FirstOrDefault();
-            ViewBag.UserBookMarks = db.BookMark.Where(u => u.OwnerId == userId).ToList();
-            return View(userInstance);
-        }
 
-        [Route("U/{username}")]
-        public ActionResult Detail(string username)
+        public ActionResult Index(string username)
         {
             var userInstance = db.Users.Where(u => u.UserName == username).FirstOrDefault();
             var userId = userInstance.Id;
             ViewBag.UserBookMarks = db.BookMark.Where(u => u.OwnerId == userId).ToList();
             return View(userInstance);
+
+        }
+
+        [Route("u/{UserName}")]
+        public ActionResult Details(string UserName)
+        {
+            var userInstance = db.Users.Where(u => u.UserName == UserName).FirstOrDefault();
+            return View(userInstance);
+        }
+
+        public ActionResult List()
+        {
+            ViewBag.AllUsers = db.Users.ToList();
+            return View();
         }
     }
 }
