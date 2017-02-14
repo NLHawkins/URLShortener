@@ -11,10 +11,10 @@
                     </p>
                     <p>
                         <h3 class="post-subtitle">
-                            @item.Description;
+                            @item.Description
                         </h3>
                     </p>
-                    <p class="post-meta">BookMarked by visited @item.Clicks times</p> 
+                    <p class="post-meta">BookMarked by @Html.RouteLink((string)item.UserName, new { username = item.UserName }) on @item.Created and visited @item.Clicks times</p> 
                 </div>
 
             }

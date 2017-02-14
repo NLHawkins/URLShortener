@@ -15,13 +15,24 @@
         </p>
         <p>
             <h3 class="post-subtitle">
-               @Model.Description;
+               @Model.Description
             </h3>
+        </p>
+        <p>
+            <h4 class="post-subtitle">
+                URL:@Model.URL
+            </h4>
+        </p>
+        <p>
+            <h4 class="post-subtitle">
+                Shortened URL: b/@Model.HashLink
+            </h4>
         </p>
         <p class="post-meta">BookMark visited @Model.Clicks times</p>
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = Model.Id}) |
         @Html.ActionLink("Back to List", "Index")
     </p>
 </div>

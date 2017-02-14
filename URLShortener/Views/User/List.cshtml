@@ -14,6 +14,9 @@
             <th>
                 Email
             </th>
+            <th>
+                User's BookMarks
+            </th>
 
         </tr>
 
@@ -25,6 +28,9 @@
                 </td>
                 <td>
                     @user.Email
+                </td>
+                <td>
+                    @Html.RouteLink("u/" + (string)user.UserName, new { username = user.UserName })
                 </td>
             </tr>
         }

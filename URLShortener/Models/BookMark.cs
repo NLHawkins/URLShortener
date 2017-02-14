@@ -16,6 +16,7 @@ namespace URLShortener.Models
         public string Description { get; set; }
         public int Clicks { get; set; }
         public DateTime Created { get; set; }
+        public string UserName { get; set; }
 
         [ForeignKey("OwnerId")]
         public virtual ApplicationUser Owner { get; set; }

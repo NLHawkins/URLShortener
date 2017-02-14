@@ -85,7 +85,9 @@ namespace URLShortener.Controllers
         {
             if (ModelState.IsValid)
             {
+                bookMark.UserName = User.Identity.GetUserName();
                 bookMark.Clicks = 1;
+                bookMark.Created = DateTime.Now;
                 bookMark.OwnerId = User.Identity.GetUserId();
                 bookMark.HashLink = getHash(bookMark.URL);                
                 db.BookMark.Add(bookMark);
@@ -101,12 +103,19 @@ namespace URLShortener.Controllers
         [Authorize]
         public ActionResult Edit(int? id)
         {
+            var userId = User.Identity.GetUserId();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+           
             BookMark bookMark = db.BookMark.Find(id);
-            if (bookMark == null)
+            if (userId != bookMark.OwnerId )
+            {
+                return HttpNotFound();
+            }
+
+                if (bookMark == null)
             {
                 return HttpNotFound();
             }
@@ -119,10 +128,11 @@ namespace URLShortener.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,URL,HashLink,OwnerId,Title,Description")] BookMark bookMark)
+        public ActionResult Edit([Bind(Include ="URL,Title,Description")] BookMark bookMark)
         {
             if (ModelState.IsValid)
             {
+                bookMark.HashLink = getHash(bookMark.URL);
                 db.Entry(bookMark).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -139,6 +149,11 @@ namespace URLShortener.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             BookMark bookMark = db.BookMark.Find(id);
+            var userId = User.Identity.GetUserId();
+            if (userId != bookMark.OwnerId)
+            {
+                return HttpNotFound();
+            }
             if (bookMark == null)
             {
                 return HttpNotFound();

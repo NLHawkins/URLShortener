@@ -220,6 +220,10 @@
     <Compile Include="Migrations\201702140300357_addedcreatedtomodel.Designer.cs">
       <DependentUpon>201702140300357_addedcreatedtomodel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702141301571_addedUserNametoBookmarkModel.cs" />
+    <Compile Include="Migrations\201702141301571_addedUserNametoBookmarkModel.Designer.cs">
+      <DependentUpon>201702141301571_addedUserNametoBookmarkModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BookMark.cs" />
@@ -320,6 +324,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702140300357_addedcreatedtomodel.resx">
       <DependentUpon>201702140300357_addedcreatedtomodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702141301571_addedUserNametoBookmarkModel.resx">
+      <DependentUpon>201702141301571_addedUserNametoBookmarkModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
