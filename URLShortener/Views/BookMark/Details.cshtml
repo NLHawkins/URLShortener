@@ -7,27 +7,36 @@
 <h1>
     -BookMark Details-
 </h1>
+    <hr />
     <div>
         <p>
             <h2 class="post-title">
                 @Model.Title
             </h2>
         </p>
+        <hr />
+      
+         @if (Model.Description != null)
+       {
         <p>
             <h3 class="post-subtitle">
-               @Model.Description
+                @Model.Description
             </h3>
         </p>
+        <hr />
+       }
         <p>
             <h4 class="post-subtitle">
-                URL:@Model.URL
+                URL: @Model.URL
             </h4>
         </p>
+        <hr />
         <p>
             <h4 class="post-subtitle">
                 Shortened URL: b/@Model.HashLink
             </h4>
         </p>
+        <hr />
         <p class="post-meta">BookMark clicked @Model.ClickLogs.Count times </p>
         <p class="post-meta">BookMark liked @Model.Favorites.Count times </p>
         <br/>
@@ -44,15 +53,11 @@
             }
             else if (ViewBag.liked == true)
             {
-                <p>In your favorites</p>
+
                 <p><input type="submit" class="btn btn-default" value="Unlike" name="command"/></p>
             }
-            else
-            {
-                <p>************bool is broken***********</p>
-            }
         }
-
+        <br/>
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

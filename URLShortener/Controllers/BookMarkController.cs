@@ -38,7 +38,7 @@ namespace URLShortener.Controllers
         }
 
         [Route("b/{hashlink}")]
-        public ActionResult Details(string hashlink)
+        public ActionResult Details(string hashlink, bool? dropClick)
         {
             
             BookMark bookMark = db.BookMark.Where(h => h.HashLink == hashlink).FirstOrDefault();
@@ -54,14 +54,16 @@ namespace URLShortener.Controllers
                     f => (f.FaverId == userId
                             && f.BookMarkId == bmId)).Any();
             ViewBag.liked = liked;
+            if (dropClick == true)
+            {
+                return View(bookMark);
+            }
 
             ClickLog click = new ClickLog();
             click.BookMarkId = bookMark.Id;
             click.TimeLog = DateTime.Now;
             db.ClickLog.Add(click);
             db.SaveChanges();
-
-
             return View(bookMark);
         }
 
@@ -102,7 +104,7 @@ namespace URLShortener.Controllers
 
             }
 
-            return RedirectToAction("Details");
+            return RedirectToAction("Details", new { dropClick = true });
         }
 
         public ActionResult Create()

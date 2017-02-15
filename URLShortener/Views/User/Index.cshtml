@@ -44,10 +44,10 @@
                     @Html.RouteLink((string)item.Title, new { HashLink = item.HashLink})
                 </td>
                 <td>
-                    @item.URL
+                    @Html.RouteLink((string)item.URL, new { HashLink = item.HashLink })
                 </td>
                 <td>
-                    @item.HashLink
+                    @Html.RouteLink("b/" + (string)@item.HashLink, new { HashLink = item.HashLink })
                 </td>
                 <td>
                     @item.Description

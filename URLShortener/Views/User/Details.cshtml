@@ -12,23 +12,24 @@
             </h3>
         </p>
         <p>
-            <h3>Favorites</h3>
-            <hr/>
-           @foreach (var fave in ViewBag.Faves)
-           {
-            <div class="row">
-                <div>
-                    @Html.ActionLink("b/" + (string)fave.HashLink, "Details", "BookMark", new { hasklink = fave.HashLink },new { })
-                    @Html.RouteLink("b/" + (string)fave.HashLink, new { hasklink = fave.HashLink })
-                    b/@fave.HashLink
+            <h3>-Favorites-</h3>
+            <hr />
+            @foreach (var fave in ViewBag.Faves)
+            {
+                <div class="row">
+                    <span>
+                        @fave.Title
+                    </span> :
+                    <span>
+                        @Html.RouteLink("b/" + (string)fave.HashLink, new { hashLink = fave.HashLink })
+                    </span>
                 </div>
-            </div>
-           }
-             
+            }
+
         </p>
     </div>
     <p>
         @Html.RouteLink("BookMarks", new { UserName = Model.UserName }) |
-        @Html.ActionLink("Home", "Index", "Home") |
+        @Html.ActionLink("Home", "Index", "Home")
     </p>
 </div>
