@@ -9,7 +9,7 @@
     <table class="table">
         <tr>
             <th>
-                UserName
+                UserName / Profile
             </th>
             <th>
                 Email
@@ -24,7 +24,7 @@
             {
             <tr>
                 <td>
-                    @user.UserName
+                   @Html.ActionLink((string)user.UserName, "Details", new { username = user.UserName })
                 </td>
                 <td>
                     @user.Email

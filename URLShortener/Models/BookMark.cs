@@ -14,7 +14,8 @@ namespace URLShortener.Models
         public string OwnerId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public int Clicks { get; set; }
+        public virtual ICollection<ClickLog> ClickLogs { get; set; }
+        public virtual ICollection<Favorite> Favorites { get; set; }
         public DateTime Created { get; set; }
         public string UserName { get; set; }
 

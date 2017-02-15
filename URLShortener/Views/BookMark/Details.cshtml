@@ -28,7 +28,31 @@
                 Shortened URL: b/@Model.HashLink
             </h4>
         </p>
-        <p class="post-meta">BookMark visited @Model.Clicks times</p>
+        <p class="post-meta">BookMark clicked @Model.ClickLogs.Count times </p>
+        <p class="post-meta">BookMark liked @Model.Favorites.Count times </p>
+        <br/>
+    
+        @using (Html.BeginForm())
+        {
+            
+            <br />
+            if (ViewBag.liked == false)
+            {   
+                <p>
+                    <input type="submit" class="btn btn-default active" name="command" value="Like"/>
+                </p>
+            }
+            else if (ViewBag.liked == true)
+            {
+                <p>In your favorites</p>
+                <p><input type="submit" class="btn btn-default" value="Unlike" name="command"/></p>
+            }
+            else
+            {
+                <p>************bool is broken***********</p>
+            }
+        }
+
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

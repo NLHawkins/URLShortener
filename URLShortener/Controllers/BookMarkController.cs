@@ -42,16 +42,18 @@ namespace URLShortener.Controllers
         {
             
             BookMark bookMark = db.BookMark.Where(h => h.HashLink == hashlink).FirstOrDefault();
-            var creatorId = bookMark.OwnerId;
-            var creator = db.Users.Where(i => i.Id == creatorId).FirstOrDefault();
-
-            ViewBag.CreatorName = creator.UserName;
+            
             if (bookMark == null)
             {
                 return HttpNotFound();
             }
-            bookMark.Clicks++;
-            db.SaveChanges();
+            var userId = User.Identity.GetUserId();
+            var bmId = bookMark.Id;
+            bool liked = db.Favorites
+                .Where(
+                    f => (f.FaverId == userId
+                            && f.BookMarkId == bmId)).Any();
+            ViewBag.liked = liked;
 
             ClickLog click = new ClickLog();
             click.BookMarkId = bookMark.Id;
@@ -63,8 +65,46 @@ namespace URLShortener.Controllers
             return View(bookMark);
         }
 
+        [HttpPost]
+        [Route("b/{hashlink}")]
+        public ActionResult Like(string hashlink, string command)
+        {
 
-        
+            BookMark bookMark = db.BookMark.Where(h => h.HashLink == hashlink).FirstOrDefault();
+            if (bookMark == null)
+            {
+                return HttpNotFound();
+            }
+
+            var userId = User.Identity.GetUserId();
+            var bmId = bookMark.Id;
+
+            if (command.Equals("Like"))
+            {
+                Favorite fave = new Favorite();
+                fave.FaverId = userId;
+                fave.BookMarkId = bmId;
+                db.Favorites.Add(fave);
+                db.SaveChanges();
+
+            }
+            else if (command.Equals("Unlike"))
+            {
+                Favorite deleteFave = db.Favorites.Where
+                                        (i =>
+                                        i.BookMarkId == bmId &&
+                                        i.FaverId == userId).
+                                        FirstOrDefault();
+
+
+                db.Favorites.Remove(deleteFave);
+                db.SaveChanges();
+
+            }
+
+            return RedirectToAction("Details");
+        }
+
         public ActionResult Create()
         {
             var userId = User.Identity.GetUserId();
@@ -86,7 +126,6 @@ namespace URLShortener.Controllers
             if (ModelState.IsValid)
             {
                 bookMark.UserName = User.Identity.GetUserName();
-                bookMark.Clicks = 1;
                 bookMark.Created = DateTime.Now;
                 bookMark.OwnerId = User.Identity.GetUserId();
                 bookMark.HashLink = getHash(bookMark.URL);                
@@ -128,10 +167,11 @@ namespace URLShortener.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include ="URL,Title,Description")] BookMark bookMark)
+        public ActionResult Edit([Bind(Include ="Id, Created, OwnerId, URL, Title, Description, UserName")] BookMark bookMark)
         {
             if (ModelState.IsValid)
             {
+                bookMark.Created = DateTime.Now;
                 bookMark.HashLink = getHash(bookMark.URL);
                 db.Entry(bookMark).State = EntityState.Modified;
                 db.SaveChanges();

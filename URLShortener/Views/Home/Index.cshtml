@@ -6,15 +6,18 @@
                 <div>
                     <p>
                         <h2 class="post-title">
-                            @Html.RouteLink((string)item.Title, new { HashLink = item.HashLink})
-                        </h2>
+                            @Html.RouteLink((string)item.Title, new { HashLink = item.HashLink })
+                        </h2> |
+                            <span>Clicks <span class="badge">@item.ClickLogs.Count</span></span> | 
+                            <span>Likes <span class="badge">@item.Favorites.Count</span></span>
+                        
                     </p>
                     <p>
                         <h3 class="post-subtitle">
                             @item.Description
                         </h3>
                     </p>
-                    <p class="post-meta">BookMarked by @Html.RouteLink((string)item.UserName, new { username = item.UserName }) on @item.Created and visited @item.Clicks times</p> 
+                    <p class="post-meta">BookMarked by @Html.RouteLink((string)item.UserName, new { username = item.UserName }) on @item.Created</p>
                 </div>
 
             }

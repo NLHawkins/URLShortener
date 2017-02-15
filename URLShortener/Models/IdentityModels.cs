@@ -23,6 +23,9 @@ namespace URLShortener.Models
     {
         public DbSet<BookMark> BookMark { get; set; }
         public DbSet<ClickLog> ClickLog { get; set; }
+        public DbSet<Favorite> Favorites { get; set; }
+
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -33,6 +36,7 @@ namespace URLShortener.Models
             
             return new ApplicationDbContext();
         }
+
 
     }
 }
