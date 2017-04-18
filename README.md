@@ -15,11 +15,11 @@ To Create and MVC project allowing a user to bookmark a site and obscure the URL
 ### Features
 *The Home Index serves a a landing page and allows a user (logged-in or anonymous) to view all publicly available bookmarks. Authentication is required to create a new or favorite an existing bookmark.*
 
-![](https://github.com/NLHawkins/URLShortener/blob/master/URLPort1.png)
+![](https://rawgit.com/NLHawkins/URLShortener/master/URLPort1.png)
 
 *Tables are used to quickly browse a specific users bookmarks.*
 
-![](https://github.com/NLHawkins/URLShortener/blob/master/URLPort2.png)
+![](https://rawgit.com/NLHawkins/URLShortener/master/URLPort2.png)
 
 *A custom route configuration is used to meter link-use as well as to redirect user to the actual URL.* 
 
