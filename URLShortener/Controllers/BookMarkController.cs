@@ -56,7 +56,7 @@ namespace URLShortener.Controllers
             ViewBag.liked = liked;
             if (dropClick == true)
             {
-                return Redirect($"http://{bookMark.URL}");
+                return RedirectToAction("Index", "Home");
             }
 
             ClickLog click = new ClickLog();
@@ -68,8 +68,7 @@ namespace URLShortener.Controllers
             //return View(bookMark);
         }
 
-        [HttpPost]
-        [Route("b/{hashlink}")]
+        [Route("like/{hashlink}")]
         public ActionResult Like(string hashlink, string command)
         {
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,8 +13,16 @@ namespace URLShortener.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
-
         {
+            if (User.Identity.IsAuthenticated == true)
+            {
+                var userId = User.Identity.GetUserId();
+                ViewBag.User = db.Users.SingleOrDefault(u => u.Id == userId);
+            }
+            else
+            {
+                ViewBag.User = null;
+            }
             ViewBag.BookMarks = db.BookMark.ToList().OrderByDescending(o=>o.Created);
             
             return View();

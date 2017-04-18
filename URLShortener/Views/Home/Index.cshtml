@@ -6,7 +6,16 @@
                 <div>
                     <p>
                         <h2 class="post-title">
-                            @Html.RouteLink((string)item.Title, new { HashLink = item.HashLink })
+                            @Html.RouteLink((string)item.Title, new { HashLink = item.HashLink }) 
+                        @if (ViewBag.User != item.Owner)
+                        {
+                            <a href="@Url.Action("Like", "BookMark", new { command = "Like", hashlink = item.HashLink })" class="btn btn-primary">
+                                <i class="icon-star icon-white"></i>
+                                <span>
+                                    <strong>Like</strong>
+                                </span>
+                            </a>
+                        }
                         </h2> |
                             <span>Clicks <span class="badge">@item.ClickLogs.Count</span></span> | 
                             <span>Likes <span class="badge">@item.Favorites.Count</span></span>

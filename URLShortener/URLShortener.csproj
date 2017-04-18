@@ -260,6 +260,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\URLPort1.png" />
     <Content Include="Images\URLPort2.png" />
+    <Content Include="Images\URLPort3.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
