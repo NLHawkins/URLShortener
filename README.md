@@ -35,12 +35,3 @@ To Create and MVC project allowing a user to bookmark a site and obscure the URL
 
 ##### This project was built during Week 6 of the immersive back-end engineering course at The Iron Yard, Greenville, SC.
 
-
-
-
-
-
-
-##### This project was built during Week 6 of the immersive back-end engineering course at The Iron Yard, Greenville, SC.
-
-*007 RESTful API built by Brennen Rogers @ http://007api.co/*
