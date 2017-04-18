@@ -56,7 +56,7 @@ namespace URLShortener.Controllers
             ViewBag.liked = liked;
             if (dropClick == true)
             {
-                return View(bookMark);
+                return Redirect($"http://{bookMark.URL}");
             }
 
             ClickLog click = new ClickLog();
@@ -64,7 +64,8 @@ namespace URLShortener.Controllers
             click.TimeLog = DateTime.Now;
             db.ClickLog.Add(click);
             db.SaveChanges();
-            return View(bookMark);
+            return Redirect($"http://{bookMark.URL}");
+            //return View(bookMark);
         }
 
         [HttpPost]
